@@ -107,5 +107,5 @@ if __name__ == '__main__':
                                 "in addition to what you have already earned. " \
                                 "https://uwartsandsciences.sjc1.qualtrics.com/" \
                                 "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
-                    print(text_body + "4"
+                    print(text_body + "4")
                     #send_message(participant_list[participant].phone, text_body)
