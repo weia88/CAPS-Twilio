@@ -1,6 +1,8 @@
 #! usr/bin/env python3
 #If server dies, have a catch or error be sent via email, to restart server asap
     #probably outside of python
+#Implement log for participant sent
+#
 import os
 import json
 
@@ -24,13 +26,13 @@ class Participant:
 
 
 def send_message(phone_num, text_body):
-    account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-    auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+    account_sid = os.getenv("TWILIO_ACCOUNT_SID") #requires change
+    auth_token = os.getenv("TWILIO_AUTH_TOKEN") #requires change
 
     client = Client(account_sid, auth_token)
     client.messages.create(
         to=phone_num,
-        from_=" ", # place phone number here
+        from_="", # place phone number here
         body=text_body
     )
 
@@ -74,16 +76,16 @@ if __name__ == '__main__':
                 text_body = "Your CAPS morning survey is now ready and will close at 1 pm PST. " \
                             "You will earn $2 for completing these questions. " \
                             "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                            "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                            "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
                 send_message(participant_list[participant].phone, text_body)
         elif current_time == 1:
             for participant in participant_list: #grab relevant info
-                if participant_list[participant].completed:
+                if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 1 pm PST. " \
                                 "Remember, you will get a $10 bonus for completing 80% of surveys " \
                                 "in addition to what you have already earned. " \
                                 "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                                "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                                "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
                     send_message(participant_list[participant].phone, text_body)
 
     #Thursday, Friday, Saturday afternoon diary (initial)
@@ -93,14 +95,14 @@ if __name__ == '__main__':
                 text_body = "Your CAPS morning survey is now ready and will close at 6 pm PST. " \
                             "You will earn $2 for completing these questions. " \
                             "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                            "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
+                            "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
                 send_message(participant_list[participant].phone, text_body)
         elif current_time == 1:
             for participant in participant_list: #grab relevant info
-                if participant_list[participant].completed:
+                if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 6 pm PST. " \
                                 "Remember, you will get a $10 bonus for completing 80% of surveys " \
                                 "in addition to what you have already earned. " \
                                 "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                                "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
+                                "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
                     send_message(participant_list[participant].phone, text_body)

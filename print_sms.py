@@ -63,7 +63,7 @@ if __name__ == '__main__':
                             "College, Alcohol and Peers Study will start tomorrow at 4 PM. " \
                             "This is week " + participant_list[participant].entry + " of 4." \
                             "Please reply to this text to confirm receipt."
-            print(text_body + "0")
+            print(text_body + " 0")
             #send_message(participant_list[participant].phone, text_body)
 
 
@@ -75,17 +75,17 @@ if __name__ == '__main__':
                 text_body = "Your CAPS morning survey is now ready and will close at 1 pm PST. " \
                             "You will earn $2 for completing these questions. " \
                             "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                            "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                            "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
                 print(text_body + " 1")
                 #send_message(participant_list[participant].phone, text_body)
         elif current_time == 1:
             for participant in participant_list: #grab relevant info
-                if participant_list[participant].completed:
+                if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 1 pm PST. " \
                                 "Remember, you will get a $10 bonus for completing 80% of surveys " \
                                 "in addition to what you have already earned. " \
                                 "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                                "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                                "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
                     print(text_body + " 2")
                     #send_message(participant_list[participant].phone, text_body)
 
@@ -96,16 +96,16 @@ if __name__ == '__main__':
                 text_body = "Your CAPS morning survey is now ready and will close at 6 pm PST. " \
                             "You will earn $2 for completing these questions. " \
                             "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                            "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
-                print(text_body + "3")
+                            "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                print(text_body + " 3")
                 #send_message(participant_list[participant].phone, text_body)
         elif current_time == 1:
             for participant in participant_list: #grab relevant info
-                if participant_list[participant].completed:
+                if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 6 pm PST. " \
                                 "Remember, you will get a $10 bonus for completing 80% of surveys " \
                                 "in addition to what you have already earned. " \
                                 "https://uwartsandsciences.sjc1.qualtrics.com/" \
-                                "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
-                    print(text_body + "4")
+                                "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
+                    print(text_body + " 4")
                     #send_message(participant_list[participant].phone, text_body)
