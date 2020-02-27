@@ -51,7 +51,7 @@ if __name__ == '__main__':
     current_time = args.currenttime
 
     #read in data file
-    with open("test.txt", "r") as json_file:
+    with open("user_data.txt", "r") as json_file:
         data = json.load(json_file)
         #make participant_list a dictionary of Participant (class)
         for p in data["participants"]:
