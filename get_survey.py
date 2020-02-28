@@ -1,3 +1,5 @@
+# Getting Survey Responses via the New Export APIs Sample Code
+#***********TODO: Figure out how to access information without needing to download to JSON format
 import requests
 import zipfile
 import json
@@ -11,7 +13,6 @@ try:
 except KeyError:
     print("set environment variable APIKEY")
     sys.exit(2)
-
 
 surveyId = os.getenv('DDM_SURVEY')
 dataCenter = os.getenv('Q_DATA_CENTER')
@@ -27,8 +28,8 @@ headers = {
 
 # Step 1: Creating Data Export
 data = {
-        "format": "csv",
-        "seenUnansweredRecode": 2
+        "format": "json"
+        # "useLabels": "False"
        }
 
 downloadRequestResponse = requests.request("POST", url, json=data, headers=headers)
@@ -72,3 +73,13 @@ requestDownload = requests.request("GET", requestDownloadUrl, headers=headers, s
 # Step 4: Unzipping the file
 zipfile.ZipFile(io.BytesIO(requestDownload.content)).extractall("MyQualtricsDownload")
 print('Complete')
+
+# Open, read, filter the fileId
+# how to condense so the file doesn't need to be extracted then read --> direct to python3
+# def findPID():
+#     with open('Daily Diary Morning.json') as fp:
+#         data = json.load(fp)
+#     for pid in data:
+#         print user['responses']['values']['recipientFirstName']
+
+# def progressCheck(pid, date, surveyID): #participant id

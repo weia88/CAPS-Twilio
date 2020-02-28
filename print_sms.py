@@ -1,12 +1,13 @@
 #! usr/bin/env python3
 #If server dies, have a catch or error be sent via email, to restart server asap
     #probably outside of python
+# PIN = PID (Participant Identfier)
 import os
 import json
 
-participant_list = {}
-
 from twilio.rest import Client
+
+participant_list = {}
 
 morning_days = set(["friday", "saturday", "sunday"])
 afternoon_days = set(["thursday", "friday", "saturday"])
@@ -24,16 +25,25 @@ class Participant:
 
 
 def send_message(phone_num, text_body):
+    # Using Twilio, send out text messages
     account_sid = os.getenv("TWILIO_ACCOUNT_SID")
     auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
     client = Client(account_sid, auth_token)
     client.messages.create(
-        to=phone_num,
-        from_=" ", # place phone number here
-        body=text_body
+        to = phone_num,
+        from_ = " ", # place phone number here
+        body = text_body
     )
 
+def updateParicipantList():
+    # Update Participant List (entry number 1-4)
+    return
+def checkCompleted(id, day):
+    # Using Qualtrics, check if a participant completed their survey or not
+    # Useful only for reminder
+    #***************************Pass in Class Participant and then update entry/completed???????
+    return
 
 if __name__ == '__main__':
     import argparse
@@ -78,7 +88,9 @@ if __name__ == '__main__':
                             "jfe/form/SV_87jBIX8rPUGahgx?PIN=" + participant_list[participant].PIN
                 print(text_body + " 1")
                 #send_message(participant_list[participant].phone, text_body)
+        #Reminder check
         elif current_time == 1:
+#Call to api check first
             for participant in participant_list: #grab relevant info
                 if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 1 pm PST. " \
@@ -99,7 +111,9 @@ if __name__ == '__main__':
                             "jfe/form/SV_6nYkAPKhKtXemIR?PIN=" + participant_list[participant].PIN
                 print(text_body + " 3")
                 #send_message(participant_list[participant].phone, text_body)
+        #Reminder check
         elif current_time == 1:
+#Call to api check first
             for participant in participant_list: #grab relevant info
                 if not participant_list[participant].completed:
                     text_body = "It is not too late to complete your CAPS afternoon survey before 6 pm PST. " \
