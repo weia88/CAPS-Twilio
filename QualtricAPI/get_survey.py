@@ -71,7 +71,7 @@ def get_survey():
     requestDownload = requests.request("GET", requestDownloadUrl, headers=headers, stream=True)
 
     # Step 4: Unzipping the file
-    zipfile.ZipFile(io.BytesIO(requestDownload.content)).extractall("../MyQualtricsDownload")
+    zipfile.ZipFile(io.BytesIO(requestDownload.content)).extractall("../MyFilesQuatrics")
     print('Complete')
 
     # Open, read, filter the fileId
@@ -90,7 +90,7 @@ def findPID(identifier):
     # Input is an participant id that is compared against survey data from Qualtrics
 # identifier should probably be an array so multiple numbers can be passed in...maybe not
     # Access json file pulled from Qualtrics... simplify so it's not a download but rather tempfile??
-    with open('../MyQualtricsDownload/Daily Diary Morning.json') as fp:
+    with open('../MyFilesQuatrics/Daily Diary Morning.json') as fp:
         data = json.load(fp)
     for r in data['responses']:
         if 'PIN' in r['values']:
@@ -100,11 +100,11 @@ def findPID(identifier):
             print("welp " + r['responseId'])
 
 def removeFile(fileName):
-    # default file name will be /MyQualtricsDownload/Daily Diary Morning/Afternoon
-    os.remove('../MyQualtricsDownload/' + fileName)
+    # default file name will be /MyFilesQuatrics/Daily Diary Morning/Afternoon
+    os.remove('../MyFilesQuatrics/' + fileName)
     print(fileName)
 
 if __name__ == '__main__':
-    # get_survey()
+    get_survey()
     # findPID("888")
     # removeFile("test.json") # "Daily Diary Morning/Afternoon"
