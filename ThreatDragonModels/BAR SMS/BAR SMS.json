@@ -1,0 +1,17 @@
+{
+  "summary": {
+    "title": "BAR SMS",
+    "owner": "Weia88",
+    "description": "Utilizing Twilio and Qualtrics API, along with server-side construction in python, this system intakes a participant list, sends out an SMS message (which contains a survey for completion post laboratory run), and verifies their completion. This system gains access, has access, and uses sensitive data and multiple levels. This Threat Model is created for and as apart of a \"Lab\" exercise in INFO 310, Information Assurance and Cybersecurity."
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "Threat Model",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ]
+  }
+}
